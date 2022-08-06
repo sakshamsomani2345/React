@@ -1,0 +1,11 @@
+const express=require("express");
+const app=express();
+const mongoose=require("mongoose");
+const cors=require('cors');
+const router= require("./routes/user-routes");
+const blogRouter= require("./routes/blog-routes");
+app.use(cors());
+app.use(express.json());
+app.use("/api/user",router);
+app.use("/api/blog",blogRouter);
+mongoose.connect("mongodb+srv://admin:admin@cluster0.qmu3s.mongodb.net/Blog?retryWrites=true&w=majority").then(()=>app.listen(5000)).then(()=>console.log("connected to db ")).catch((err)=>console.log(err)); 
